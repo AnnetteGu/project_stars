@@ -1,5 +1,7 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,7 +59,7 @@ public class Star {
 
     @OneToMany(cascade = CascadeType.ALL,
                 mappedBy = "star")
-    private Comment starComment;
+    private List<Comment> starComments;
 
     public Star() {
     }
@@ -153,19 +155,19 @@ public class Star {
         this.starConstInf = starConstInf;
     }
 
-    public Comment getStarComment() {
-        return starComment;
+    public List<Comment> getStarComments() {
+        return starComments;
     }
 
-    public void setStarComment(Comment starComment) {
-        this.starComment = starComment;
+    public void setStarComments(List<Comment> starComments) {
+        this.starComments = starComments;
     }
 
     @Override
     public String toString() {
         return "Star [id=" + id + ", name=" + name + ", codeNumber=" + codeNumber + ", type=" + type + ", temperature="
                 + temperature + ", luminosity=" + luminosity + ", weight=" + weight + ", price=" + price
-                + ", starKeeper=" + starKeeper + ", starConstInf=" + starConstInf + ", starComment=" + starComment
+                + ", starKeeper=" + starKeeper + ", starConstInf=" + starConstInf + ", starComment=" + starComments
                 + "]";
     }
 

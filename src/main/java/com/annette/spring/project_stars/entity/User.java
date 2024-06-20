@@ -1,5 +1,7 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,8 +49,8 @@ public class User {
         CascadeType.MERGE,
         CascadeType.PERSIST,
         CascadeType.REFRESH
-    }, mappedBy = "userKeeper")
-    Star userStar;
+    }, mappedBy = "starKeeper")
+     private List<Star> userStars;
 
     @OneToMany(cascade = {
         CascadeType.DETACH,
@@ -56,7 +58,7 @@ public class User {
         CascadeType.PERSIST,
         CascadeType.REFRESH
     }, mappedBy = "author")
-    Comment userComment;
+    private List<Comment> userComments;
 
     public User() {
     }
@@ -134,27 +136,27 @@ public class User {
         this.userSettings = userSettings;
     }
 
-    public Star getUserStar() {
-        return userStar;
+    public List<Star> getUserStars() {
+        return userStars;
     }
 
-    public void setUserStar(Star userStar) {
-        this.userStar = userStar;
+    public void setUserStars(List<Star> userStars) {
+        this.userStars = userStars;
     }
 
-    public Comment getUserComment() {
-        return userComment;
+    public List<Comment> getUserComments() {
+        return userComments;
     }
 
-    public void setUserComment(Comment userComment) {
-        this.userComment = userComment;
+    public void setUserComments(List<Comment> userComments) {
+        this.userComments = userComments;
     }
 
     @Override
     public String toString() {
         return "User [id=" + id + ", nickname=" + nickname + ", login=" + login + ", email=" + email + ", password="
                 + password + ", role=" + role + ", balance=" + balance + ", userSettings=" + userSettings
-                + ", userStar=" + userStar + ", userComment=" + userComment + "]";
+                + ", userStar=" + userStars + ", userComment=" + userComments + "]";
     }
 
 }

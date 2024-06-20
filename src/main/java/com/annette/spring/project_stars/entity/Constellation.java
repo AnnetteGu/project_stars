@@ -1,5 +1,7 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +28,7 @@ public class Constellation {
 
     @OneToMany(cascade = CascadeType.ALL, 
                 mappedBy = "constellation")
-    private ConstellationInf constInf;
+    private List<ConstellationInf> constInf;
 
     public Constellation() {
     }
@@ -60,11 +62,11 @@ public class Constellation {
         this.isZodiac = isZodiac;
     }
 
-    public ConstellationInf getConstInf() {
+    public List<ConstellationInf> getConstInf() {
         return constInf;
     }
 
-    public void setConstInf(ConstellationInf constInf) {
+    public void setConstInf(List<ConstellationInf> constInf) {
         this.constInf = constInf;
     }
 
