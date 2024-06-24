@@ -23,8 +23,11 @@ public class Constellation {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "star_amount")
+    private int starAmount;
+
     @Column(name = "is_zodiac")
-    private int isZodiac;
+    private boolean isZodiac;
 
     @OneToMany(cascade = CascadeType.ALL, 
                 mappedBy = "constellation")
@@ -33,8 +36,9 @@ public class Constellation {
     public Constellation() {
     }
 
-    public Constellation(String name, int isZodiac) {
+    public Constellation(String name, int starAmount, boolean isZodiac) {
         this.name = name;
+        this.starAmount = starAmount;
         this.isZodiac = isZodiac;
     }
 
@@ -54,11 +58,19 @@ public class Constellation {
         this.name = name;
     }
 
-    public int getIsZodiac() {
+    public int getStarAmount() {
+        return starAmount;
+    }
+
+    public void setStarAmount(int starAmount) {
+        this.starAmount = starAmount;
+    } 
+
+    public boolean getIsZodiac() {
         return isZodiac;
     }
 
-    public void setIsZodiac(int isZodiac) {
+    public void setIsZodiac(boolean isZodiac) {
         this.isZodiac = isZodiac;
     }
 
@@ -72,7 +84,10 @@ public class Constellation {
 
     @Override
     public String toString() {
-        return "Constellation [id=" + id + ", name=" + name + ", isZodiac=" + isZodiac + ", constInf=" + constInf + "]";
-    } 
+        return "Constellation [id=" + id + ", name=" + name + ", starAmount=" + starAmount + ", isZodiac=" + isZodiac
+                + ", constInf=" + constInf + "]";
+    }
+
+    
 
 }
