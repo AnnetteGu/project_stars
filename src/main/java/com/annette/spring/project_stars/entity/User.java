@@ -1,5 +1,6 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -63,13 +64,30 @@ public class User {
     public User() {
     }
 
-    public User(String nickname, String login, String email, String password, String role, double balance) {
+    public User(String nickname, String login, String email, 
+        String password, String role, double balance, Settings userSettings) {
         this.nickname = nickname;
         this.login = login;
         this.email = email;
         this.password = password;
         this.role = role;
         this.balance = balance;
+        this.userSettings = userSettings;
+    }
+
+    public void addStarToUser(Star star) {
+
+        if (this.userStars == null) this.userStars = new ArrayList<>();
+
+        else this.userStars.add(star);
+    }
+
+    public void addCommentToUser(Comment comment) {
+
+        if (this.userComments == null) this.userComments = new ArrayList<>();
+
+        else this.userComments.add(comment);
+
     }
 
     public int getId() {
@@ -155,8 +173,8 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", nickname=" + nickname + ", login=" + login + ", email=" + email + ", password="
-                + password + ", role=" + role + ", balance=" + balance + ", userSettings=" + userSettings
-                + ", userStar=" + userStars + ", userComment=" + userComments + "]";
+                + password + ", role=" + role + ", balance=" + balance + ", user_settings=" + userSettings
+                + ", user_star=" + userStars + ", user_comment=" + userComments + "]";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Constellation {
 
     @OneToMany(cascade = CascadeType.ALL, 
                 mappedBy = "constellation")
-    private List<ConstellationInf> constInf;
+    private List<ConstellationInf> constInfs;
 
     public Constellation() {
     }
@@ -40,6 +41,14 @@ public class Constellation {
         this.name = name;
         this.starAmount = starAmount;
         this.isZodiac = isZodiac;
+    }
+
+    public void addConstInfToConstellation(ConstellationInf constInfs) {
+
+        if (this.constInfs == null) this.constInfs = new ArrayList<>();
+
+        else this.constInfs.add(constInfs);
+
     }
 
     public int getId() {
@@ -74,18 +83,18 @@ public class Constellation {
         this.isZodiac = isZodiac;
     }
 
-    public List<ConstellationInf> getConstInf() {
-        return constInf;
+    public List<ConstellationInf> getConstInfs() {
+        return constInfs;
     }
 
-    public void setConstInf(List<ConstellationInf> constInf) {
-        this.constInf = constInf;
+    public void setConstInfs(List<ConstellationInf> constInfs) {
+        this.constInfs = constInfs;
     }
 
     @Override
     public String toString() {
         return "Constellation [id=" + id + ", name=" + name + ", starAmount=" + starAmount + ", isZodiac=" + isZodiac
-                + ", constInf=" + constInf + "]";
+                + ", constInfs=" + constInfs + "]";
     }
 
     

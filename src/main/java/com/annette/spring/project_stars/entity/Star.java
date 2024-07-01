@@ -1,5 +1,6 @@
 package com.annette.spring.project_stars.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -73,6 +74,14 @@ public class Star {
         this.luminosity = luminosity;
         this.weight = weight;
         this.price = price;
+    }
+
+    public void addCommentToStar(Comment comment) {
+
+        if (this.starComments == null) this.starComments = new ArrayList<>();
+
+        else this.starComments.add(comment);
+
     }
 
     public int getId() {
