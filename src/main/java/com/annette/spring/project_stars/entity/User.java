@@ -58,7 +58,8 @@ public class User {
         CascadeType.MERGE,
         CascadeType.PERSIST,
         CascadeType.REFRESH
-    }, mappedBy = "author")
+    })
+    @JoinColumn(name = "user_id")
     private List<Comment> userComments;
 
     public User() {

@@ -1,15 +1,11 @@
 package com.annette.spring.project_stars.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -22,23 +18,11 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    })
-    @JoinColumn(name = "user_id")
-    private User author;
+    @Column(name = "star_id")
+    private int starId;
 
-    @ManyToOne(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    })
-    @JoinColumn(name = "star_id")
-    private Star star;
+    @Column(name = "user_id")
+    private int userId;
 
     public Comment() {
     }
@@ -63,25 +47,25 @@ public class Comment {
         this.text = text;
     }
 
-    public User getAuthor() {
-        return author;
+    public int getStarId() {
+        return starId;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setStarId(int starId) {
+        this.starId = starId;
     }
 
-    public Star getStar() {
-        return star;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setStar(Star star) {
-        this.star = star;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
-        return "Comment [id=" + id + ", text=" + text + ", author=" + author + ", star=" + star + "]";
+        return "Comment [id=" + id + ", text=" + text + ", starId=" + starId + ", userId=" + userId + "]";
     }
 
 }

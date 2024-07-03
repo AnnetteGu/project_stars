@@ -58,8 +58,8 @@ public class Star {
     @JoinColumn(name = "const_inf_id")
     private ConstellationInf starConstInf;
 
-    @OneToMany(cascade = CascadeType.ALL,
-                mappedBy = "star")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "star_id")
     private List<Comment> starComments;
 
     public Star() {
