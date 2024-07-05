@@ -50,7 +50,8 @@ public class User {
         CascadeType.MERGE,
         CascadeType.PERSIST,
         CascadeType.REFRESH
-    }, mappedBy = "starKeeper")
+    })
+    @JoinColumn(name = "keeper_id")
      private List<Star> userStars;
 
     @OneToMany(cascade = {
@@ -174,8 +175,7 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", nickname=" + nickname + ", login=" + login + ", email=" + email + ", password="
-                + password + ", role=" + role + ", balance=" + balance + ", user_settings=" + userSettings
-                + ", user_star=" + userStars + ", user_comment=" + userComments + "]";
+                + password + ", role=" + role + ", balance=" + balance + ", userSettings=" + userSettings + "]";
     }
 
 }

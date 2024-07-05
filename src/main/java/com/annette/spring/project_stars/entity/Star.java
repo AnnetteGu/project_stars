@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -45,14 +44,8 @@ public class Star {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    })
-    @JoinColumn(name = "keeper_id")
-    private User starKeeper;
+    @Column(name = "keeper_id")
+    private int keeperId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "const_inf_id")
@@ -148,12 +141,12 @@ public class Star {
         this.price = price;
     }
 
-    public User getStarKeeper() {
-        return starKeeper;
+    public int getKeeperId() {
+        return keeperId;
     }
 
-    public void setStarKeeper(User starKeeper) {
-        this.starKeeper = starKeeper;
+    public void setKeeperId(int keeperId) {
+        this.keeperId = keeperId;
     }
 
     public ConstellationInf getStarConstInf() {
@@ -175,9 +168,8 @@ public class Star {
     @Override
     public String toString() {
         return "Star [id=" + id + ", name=" + name + ", codeNumber=" + codeNumber + ", type=" + type + ", temperature="
-                + temperature + ", luminosity=" + luminosity + ", weight=" + weight + ", price=" + price
-                + ", starKeeper=" + starKeeper + ", starConstInf=" + starConstInf + ", starComment=" + starComments
-                + "]";
+                + temperature + ", luminosity=" + luminosity + ", weight=" + weight + ", price=" + price + ", keeperId="
+                + keeperId + ", starConstInf=" + starConstInf + "]";
     }
 
 }

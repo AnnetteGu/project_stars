@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -30,8 +31,8 @@ public class Constellation {
     @Column(name = "is_zodiac")
     private boolean isZodiac;
 
-    @OneToMany(cascade = CascadeType.ALL, 
-                mappedBy = "constellation")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "const_id")
     private List<ConstellationInf> constInfs;
 
     public Constellation() {

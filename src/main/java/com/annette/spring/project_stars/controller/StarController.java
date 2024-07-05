@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.annette.spring.project_stars.entity.ConstellationInf;
 import com.annette.spring.project_stars.entity.Star;
 import com.annette.spring.project_stars.service.StarService;
 
@@ -33,6 +34,13 @@ public class StarController {
     public Star getStar(@PathVariable(name = "id") int id) {
 
         return starService.getStar(id);
+
+    }
+
+    @GetMapping("/stars/const-inf/{id}")
+    public ConstellationInf getStarConstInf(@PathVariable(name = "id") int id) {
+
+        return starService.getStarConstInf(id);
 
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.annette.spring.project_stars.entity.ConstellationInf;
 import com.annette.spring.project_stars.entity.Star;
 
 import jakarta.persistence.EntityManager;
@@ -31,6 +32,19 @@ public class StarDAOImpl implements StarDAO {
         Star star = entityManager.find(Star.class, id);
 
         return star;
+
+    }
+
+    @Override
+    public ConstellationInf getStarConstInf(int id) {
+
+        Star star = entityManager.find(Star.class, id);
+
+        ConstellationInf constInf = star.getStarConstInf();
+
+        int constInfId = constInf.getId();
+
+        return entityManager.find(ConstellationInf.class, constInfId);
 
     }
 

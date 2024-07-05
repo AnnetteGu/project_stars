@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.annette.spring.project_stars.dao.StarDAO;
+import com.annette.spring.project_stars.entity.ConstellationInf;
 import com.annette.spring.project_stars.entity.Star;
 
 import jakarta.transaction.Transactional;
@@ -30,6 +31,14 @@ public class StarServiceImpl implements StarService {
 
         return starDAO.getStar(id);
       
+    }
+
+    @Override
+    @Transactional
+    public ConstellationInf getStarConstInf(int id) {
+
+        return starDAO.getStarConstInf(id);
+
     }
 
     @Override

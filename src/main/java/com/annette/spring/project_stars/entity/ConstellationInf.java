@@ -1,14 +1,10 @@
 package com.annette.spring.project_stars.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,25 +16,11 @@ public class ConstellationInf {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "constRole")
+    @Column(name = "const_id")
+    private int constId;
+
+    @Column(name = "const_role")
     private String constRole;
-
-    @OneToOne(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    }, mappedBy = "starConstInf")
-    private Star star;
-
-    @ManyToOne(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    })
-    @JoinColumn(name = "const_id")
-    private Constellation constellation;
 
     public ConstellationInf() {
     }
@@ -63,26 +45,17 @@ public class ConstellationInf {
         this.constRole = constRole;
     }
 
-    public Star getStar() {
-        return star;
+    public int getConstId() {
+        return constId;
     }
 
-    public void setStar(Star star) {
-        this.star = star;
-    }
-
-    public Constellation getConstellation() {
-        return constellation;
-    }
-
-    public void setConstellation(Constellation constellation) {
-        this.constellation = constellation;
+    public void setConstId(int constId) {
+        this.constId = constId;
     }
 
     @Override
     public String toString() {
-        return "ConstellationInf [id=" + id + ", constRole=" + constRole + ", star=" + star + ", constellation="
-                + constellation + "]";
+        return "ConstellationInf [id=" + id + ", constId=" + constId + ", constRole=" + constRole + "]";
     }
 
 }
