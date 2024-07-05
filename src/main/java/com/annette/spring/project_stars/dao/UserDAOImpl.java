@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.annette.spring.project_stars.entity.Settings;
 import com.annette.spring.project_stars.entity.User;
 
 import jakarta.persistence.EntityManager;
@@ -31,6 +32,19 @@ public class UserDAOImpl implements UserDAO {
         User user = entityManager.find(User.class, id);
 
         return user;
+
+    }
+
+    @Override
+    public Settings getUserSettings(int id) {
+
+        User user = entityManager.find(User.class, id);
+
+        Settings userSettings = user.getUserSettings();
+
+        int settingsId = userSettings.getId();
+
+        return entityManager.find(Settings.class, settingsId);
 
     }
 

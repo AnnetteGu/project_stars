@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.annette.spring.project_stars.entity.Settings;
 import com.annette.spring.project_stars.entity.User;
 import com.annette.spring.project_stars.service.UserService;
 
@@ -34,6 +35,13 @@ public class UserController {
 
         return userService.getUser(id);
 
+    }
+
+    @GetMapping("/users/settings/{id}")
+    public Settings getUserSettings(@PathVariable(name = "id") int id) {
+
+        return userService.getUserSettings(id);
+        
     }
 
     @PostMapping("/users")

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.annette.spring.project_stars.dao.UserDAO;
+import com.annette.spring.project_stars.entity.Settings;
 import com.annette.spring.project_stars.entity.User;
 
 import jakarta.transaction.Transactional;
@@ -29,6 +30,13 @@ public class UserServiceImpl implements UserService {
     public User getUser(int id) {
 
         return userDAO.getUser(id);
+
+    }
+
+    @Override
+    public Settings getUserSettings(int id) {
+
+        return userDAO.getUserSettings(id);
 
     }
 
