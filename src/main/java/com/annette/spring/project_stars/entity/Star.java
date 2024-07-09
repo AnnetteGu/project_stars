@@ -45,7 +45,7 @@ public class Star {
     private int price;
 
     @Column(name = "keeper_id")
-    private int keeperId;
+    private Integer keeperId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "const_inf_id")
@@ -141,11 +141,11 @@ public class Star {
         this.price = price;
     }
 
-    public int getKeeperId() {
+    public Integer getKeeperId() {
         return keeperId;
     }
 
-    public void setKeeperId(int keeperId) {
+    public void setKeeperId(Integer keeperId) {
         this.keeperId = keeperId;
     }
 
