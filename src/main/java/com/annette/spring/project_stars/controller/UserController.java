@@ -44,6 +44,15 @@ public class UserController {
         
     }
 
+    @PutMapping("/users/purchase-star")
+    public String purchaseStar(@RequestBody String purchaseInf) {
+
+        userService.purchaseStar(purchaseInf);
+
+        return "Star was successfully purchased";
+
+    }
+
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
 
@@ -59,6 +68,14 @@ public class UserController {
         userService.saveUser(user);
 
         return user;
+
+    }
+
+    @PutMapping("/users/{id}")
+    public User refillBalance(@PathVariable(name = "id") int id, 
+        @RequestBody String balance) {
+
+        return userService.refillBalance(id, balance);
 
     }
 

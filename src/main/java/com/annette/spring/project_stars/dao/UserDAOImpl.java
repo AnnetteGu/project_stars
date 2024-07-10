@@ -1,12 +1,16 @@
 package com.annette.spring.project_stars.dao;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.annette.spring.project_stars.entity.Settings;
+import com.annette.spring.project_stars.entity.Star;
 import com.annette.spring.project_stars.entity.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.persistence.EntityManager;
 
@@ -48,6 +52,35 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public void purchaseStar(String purchaseInf) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        LinkedHashMap<String, String> resultMap = new LinkedHashMap<>();
+
+        try {
+            resultMap = objectMapper.readValue(purchaseInf, LinkedHashMap.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        int starId = Integer.parseInt(resultMap.get("starId"));
+        int userId = Integer.parseInt(resultMap.get("userId"));
+
+        Star star = entityManager.find(Star.class, starId);
+        User user = entityManager.find(User.class, userId);
+
+        user.setBalance(user.getBalance() - star.getPrice());
+
+        star.setKeeperId(userId);
+
+        entityManager.merge(user);
+        entityManager.merge(star);
+
+    }
+
     @Override
     public User saveUser(User user) {
 
@@ -56,6 +89,30 @@ public class UserDAOImpl implements UserDAO {
         user.setId(newUser.getId());
 
         return user;
+
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public User refillBalance(int id, String balance) {
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        LinkedHashMap<String, String> resultMap = new LinkedHashMap<>();
+
+        try {
+            resultMap = objectMapper.readValue(balance, LinkedHashMap.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        double newBalance = Double.parseDouble(resultMap.get("balance"));
+        
+        User user = entityManager.find(User.class, id);
+
+        user.setBalance(user.getBalance() + newBalance);
+
+        return entityManager.merge(user);
 
     }
 

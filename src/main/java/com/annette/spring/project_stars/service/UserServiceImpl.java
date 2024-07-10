@@ -34,9 +34,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public Settings getUserSettings(int id) {
 
         return userDAO.getUserSettings(id);
+
+    }
+
+    @Override
+    @Transactional
+    public void purchaseStar(String purchaseInf) {
+
+        userDAO.purchaseStar(purchaseInf);
 
     }
 
@@ -47,6 +56,14 @@ public class UserServiceImpl implements UserService {
         userDAO.saveUser(user);
 
         return user;
+
+    }
+
+    @Override
+    @Transactional
+    public User refillBalance(int id, String balance) {
+
+        return userDAO.refillBalance(id, balance);
 
     }
 

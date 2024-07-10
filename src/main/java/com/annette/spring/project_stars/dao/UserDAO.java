@@ -13,7 +13,11 @@ public interface UserDAO {
 
     public Settings getUserSettings(int id);
 
+    public void purchaseStar(String purchaseInf);
+
     public User saveUser(User user);
+
+    public User refillBalance(int id, String balance);
 
     public void deleteUser(int id);
 
