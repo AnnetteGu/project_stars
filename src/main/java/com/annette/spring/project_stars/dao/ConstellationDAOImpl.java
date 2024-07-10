@@ -1,13 +1,17 @@
 package com.annette.spring.project_stars.dao;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.annette.spring.project_stars.entity.Constellation;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 @Repository
 public class ConstellationDAOImpl implements ConstellationDAO {
@@ -22,6 +26,31 @@ public class ConstellationDAOImpl implements ConstellationDAO {
             Constellation.class).getResultList();
 
         return consts;
+
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Constellation searchConst(String name) {
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        LinkedHashMap<String, String> resultMap = new LinkedHashMap<>();
+
+        try {
+            resultMap = objectMapper.readValue(name, LinkedHashMap.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        String constName = resultMap.get("name");
+
+        Query query = entityManager
+            .createQuery("from Constellation where name =:constName");
+        
+        query.setParameter("constName", constName);
+
+        return (Constellation) query.getSingleResult();
 
     }
 

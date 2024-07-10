@@ -29,6 +29,13 @@ public class ConstController {
 
     }
 
+    @PostMapping("/consts/search")
+    public Constellation searchConst(@RequestBody String name) {
+
+        return constService.searchConst(name);
+
+    }
+
     @GetMapping("/consts/{id}")
     public Constellation getConst(@PathVariable(name = "id") int id) {
 

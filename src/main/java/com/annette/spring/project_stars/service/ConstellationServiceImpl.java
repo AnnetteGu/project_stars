@@ -26,6 +26,14 @@ public class ConstellationServiceImpl implements ConstellationService {
 
     @Override
     @Transactional
+    public Constellation searchConst(String name) {
+        
+        return constDAO.searchConst(name);
+
+    }
+
+    @Override
+    @Transactional
     public Constellation getConst(int id) {
 
         return constDAO.getConst(id);

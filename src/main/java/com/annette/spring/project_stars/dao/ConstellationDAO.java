@@ -8,6 +8,8 @@ public interface ConstellationDAO {
 
     public List<Constellation> getAllConsts();
 
+    public Constellation searchConst(String name);
+
     public Constellation getConst(int id);
 
     public Constellation saveConst(Constellation constellation);
