@@ -27,6 +27,14 @@ public class StarServiceImpl implements StarService {
 
     @Override
     @Transactional
+    public Star searchStar(String name) {
+
+        return starDAO.searchStar(name);
+
+    }
+
+    @Override
+    @Transactional
     public Star getStar(int id) {
 
         return starDAO.getStar(id);

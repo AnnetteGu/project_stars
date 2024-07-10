@@ -30,6 +30,13 @@ public class StarController {
 
     }
 
+    @PostMapping("/stars/search")
+    public Star searchStar(@RequestBody String starName) {
+
+        return starService.searchStar(starName);
+
+    }
+
     @GetMapping("/stars/{id}")
     public Star getStar(@PathVariable(name = "id") int id) {
 
