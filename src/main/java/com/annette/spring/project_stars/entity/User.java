@@ -54,12 +54,7 @@ public class User {
     @JoinColumn(name = "keeper_id")
      private List<Star> userStars;
 
-    @OneToMany(cascade = {
-        CascadeType.DETACH,
-        CascadeType.MERGE,
-        CascadeType.PERSIST,
-        CascadeType.REFRESH
-    })
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Comment> userComments;
 

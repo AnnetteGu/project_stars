@@ -85,7 +85,10 @@ public class StarDAOImpl implements StarDAO {
 
         Star newStar = entityManager.merge(star);
 
+        ConstellationInf starConstInf = newStar.getStarConstInf();
+
         star.setId(newStar.getId());
+        star.setStarConstInf(starConstInf);
 
         return star;
 
