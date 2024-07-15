@@ -3,6 +3,7 @@ package com.annette.spring.project_stars.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,7 @@ public class StarController {
     }
 
     @PostMapping("/stars")
+    @PreAuthorize("hasAuthority('scientist')")
     public Star addStar(@RequestBody Star star) {
 
         starService.saveStar(star);
@@ -61,6 +63,7 @@ public class StarController {
     }
 
     @PutMapping("/stars")
+    @PreAuthorize("hasAuthority('scientist')")
     public Star updateStar(@RequestBody Star star) {
 
         starService.saveStar(star);
@@ -70,6 +73,7 @@ public class StarController {
     }
 
     @DeleteMapping("/stars/{id}")
+    @PreAuthorize("hasAuthority('scientist')")
     public String deleteStar(@PathVariable(name = "id") int id) {
 
         starService.deleteStar(id);

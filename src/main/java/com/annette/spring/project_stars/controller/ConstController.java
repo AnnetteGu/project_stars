@@ -3,6 +3,7 @@ package com.annette.spring.project_stars.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,7 @@ public class ConstController {
     }
 
     @PostMapping("/consts")
+    @PreAuthorize("hasAuthority('scientist')")
     public Constellation addConst(@RequestBody Constellation constellation) {
 
         constService.saveConst(constellation);
@@ -53,6 +55,7 @@ public class ConstController {
     }
 
     @PutMapping("/consts")
+    @PreAuthorize("hasAuthority('scientist')")
     public Constellation updateConst(@RequestBody Constellation constellation) {
 
         constService.saveConst(constellation);
@@ -62,6 +65,7 @@ public class ConstController {
     }
 
     @DeleteMapping("/consts/{id}")
+    @PreAuthorize("hasAuthority('scientist')")
     public String deleteConst(@PathVariable(name = "id") int id) {
 
         constService.deleteConst(id);

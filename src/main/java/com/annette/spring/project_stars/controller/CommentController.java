@@ -3,6 +3,7 @@ package com.annette.spring.project_stars.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ public class CommentController {
     }
 
     @GetMapping("/user/comments/{id}")
+    @PreAuthorize("hasAuthority('admin')")
     public List<Comment> getAllUserComments(@PathVariable(name = "id") int id) {
 
         return commentService.getAllUserComments(id);
