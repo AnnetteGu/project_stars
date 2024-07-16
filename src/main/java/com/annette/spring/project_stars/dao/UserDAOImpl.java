@@ -109,7 +109,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User saveUser(User user) {
+    public User addUser(User user) {
 
         Settings settings = new Settings("day", "russian");
 
@@ -122,6 +122,17 @@ public class UserDAOImpl implements UserDAO {
         settings.setId(newUser.getUserSettings().getId());
 
         user.setUserSettings(settings);
+
+        return user;
+
+    }
+
+    @Override
+    public User updateUser(User user) {
+
+        User newUser = entityManager.merge(user);
+
+        user.setId(newUser.getId());
 
         return user;
 

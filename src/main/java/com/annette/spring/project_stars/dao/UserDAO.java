@@ -18,7 +18,9 @@ public interface UserDAO {
 
     public void purchaseStar(String purchaseInf);
 
-    public User saveUser(User user);
+    public User addUser(User user);
+
+    public User updateUser(User user);
 
     public User refillBalance(int id, String balance);
 
