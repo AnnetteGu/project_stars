@@ -57,7 +57,7 @@ public class UserController {
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
 
-        userService.saveUser(user);
+        userService.addUser(user);
 
         return user;
 
@@ -66,7 +66,7 @@ public class UserController {
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {
 
-        userService.saveUser(user);
+        userService.updateUser(user);
 
         return user;
 
